@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS | Admin Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@650;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ======================================================== */
+    /* UNIVERSAL CLOUD-HOSTED BACKGROUND LAYER ENGINE          */
+    /* ======================================================== */
+    .dynamic-bg-layer {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: -9999 !important; /* Locks artwork safely below archival content columns */
+      
+      /* PASTE YOUR CLOUD DIRECT LINK IN THE QUOTES BELOW */
+      background-image: url("https://i.postimg.cc/YSSygRG9/Untitled-design.jpg") !important;
+      
+      background-position: center center !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+      background-color: #050508 !important; /* Dark fallback matrix shade */
+    }
+
+    /* Force parent structural layouts to be entirely translucent */
+    html, body, .grid-background, .app-container, main, .main-content {
+      background: transparent !important;
+      background-color: transparent !important;
+    }
+
+    .app-container {
+      position: relative !important;
+      z-index: 10 !important;
+    }
+
+    /* Glassmorphism upgrade layout definitions for the data logging panel */
+    .glass-card {
+      background: rgba(5, 7, 12, 0.45) !important; 
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+
+    /* --- UNIFIED INDEPENDENT ROW HOVER ENGINE --- */
+    .vault-row {
+      border-bottom: 1px solid rgba(0, 210, 255, 0.08);
+      transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      background: transparent;
+    }
+
+    /* Entire single row scales up and glows as one unit */
+    .vault-row:hover {
+      transform: scale(1.015);
+      background: rgba(0, 210, 255, 0.04) !important;
+      box-shadow: 0 4px 20px rgba(0, 210, 255, 0.12);
+      z-index: 10;
+    }
+
+    /* Left-side accent track line indicating active row */
+    .vault-row:hover td:first-child {
+      box-shadow: inset 4px 0 0 var(--accent-cyan);
+    }
+
+    /* Standard cell padding adjustments */
+    .vault-row td {
+      padding: 18px 24px !important;
+      vertical-align: middle;
+      color: var(--text-secondary);
+      transition: color 0.25s ease;
+    }
+
+    .vault-row:hover td {
+      color: var(--text-primary);
+    }
+
+    /* --- PERSISTENT UNLOCKED OVERRIDES --- */
+    .vault-row.session-opened {
+      background: rgba(0, 210, 255, 0.01);
+    }
+    .vault-row.session-opened .identity-text-wrap {
+      color: var(--accent-cyan);
+    }
+
+    /* Identity layouts */
+    .identity-text-wrap {
+      display: inline-flex;
+      align-items: center;
+    }
+    .identity-text-wrap .lock-icon {
+      margin-right: 12px;
+      font-size: 0.95rem;
+      display: inline-block;
+    }
+
+    /* Back Button Hover Mechanics */
+    .btn-animated-back {
+      transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    }
+    .btn-animated-back:hover {
+      transform: scale(1.05);
+      border-color: var(--accent-cyan) !important;
+      color: var(--accent-cyan) !important;
+      box-shadow: 0 0 12px var(--accent-cyan-glow) !important;
+      background: var(--bg-glass-hover) !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="dynamic-bg-layer"></div>
+  <div class="grid-background"></div>
+
+  <div class="app-container">
+    <main class="main-content" style="max-width: 900px;">
+      
+      <section class="page-header" style="text-align: left; display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px;">
+        <div>
+          <span class="matrix-chip" style="letter-spacing: 0.05em; font-size: 0.65rem;">SECURED ARCHIVES</span>
+          <h1 class="page-heading" style="font-family: 'Nunito', sans-serif; font-size: 2.2rem; font-weight: 700; margin-top: 6px;">
+            Encrypted Session Ledger
+          </h1>
+        </div>
+        <a href="/" class="btn btn-secondary btn-animated-back" style="padding: 12px 24px; font-size: 0.95rem; font-weight: 600;">
+          ← Back to Home
+        </a>
+      </section>
+
+      <div class="portal-card-container">
+        <article class="glass-card" style="padding: 0; overflow: hidden;">
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
+              <thead>
+                <tr style="background: rgba(0, 210, 255, 0.04); border-bottom: 1px solid var(--border-glass); font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em;">
+                  <th style="padding: 18px 24px; width: 32%;">Session Timestamp</th>
+                  <th style="padding: 18px 24px; width: 43%;">Candidate Identity</th>
+                  <th style="padding: 18px 24px; text-align: right; width: 25%;">Access Link</th>
+                </tr>
+              </thead>
+              <tbody style="color: var(--text-secondary);">
+  {% for interview in interviews %}
+  <tr class="vault-row" data-sid="{{ interview.name }}-{{ interview.date }}" style="font-family: var(--font-sans); border-bottom: none;">
+    <td style="font-family: var(--font-mono); font-size: 0.85rem;">
+      📅 {{ interview.date }}
+    </td>
+    <td>
+      <div class="identity-text-wrap">
+        <span class="lock-icon" id="icon-{{ interview.name }}-{{ interview.date }}">🔒</span>
+        <span style="font-weight: 600; color: var(--text-primary);">{{ interview.name }}</span>
+      </div>
+    </td>
+    <td style="text-align: right;">
+      <form action="/report" method="POST" onsubmit="markSessionOpened('{{ interview.name }}-{{ interview.date }}')" style="margin: 0; display: inline-block;">
+        <input type="hidden" name="name" value="{{ interview.name }}">
+        <input type="hidden" name="date" value="{{ interview.date }}">
+        
+        <button type="submit" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.8rem; font-family: var(--font-sans); font-weight: 600;">
+          Show Report
+        </button>
+      </form>
+    </td>
+  </tr>
+
+  <tr class="vault-row metrics-sub-row" data-sid="{{ interview.name }}-{{ interview.date }}" style="font-family: var(--font-sans); background: rgba(255,255,255,0.0125);">
+    <td colspan="3" style="padding: 10px 24px 20px 24px !important; font-size: 0.85rem;">
+      <div style="display: flex; gap: 40px; align-items: center;">
+        
+        <div>
+          <span style="display: block; font-size: 0.65rem; color: var(--text-muted); font-family: var(--font-mono); text-transform: uppercase; margin-bottom: 4px;">Topic Area</span>
+          <span class="matrix-chip" style="background: rgba(0, 210, 255, 0.06); color: var(--accent-cyan); padding: 4px 10px; border-radius: 4px; font-weight: 600; font-size: 0.75rem;">
+            {{ interview.subject if interview.subject else 'JavaScript' }}
+          </span>
+        </div>
+
+        <div>
+          <span style="display: block; font-size: 0.65rem; color: var(--text-muted); font-family: var(--font-mono); text-transform: uppercase; margin-bottom: 4px;">Evaluation Rating</span>
+          <span style="font-family: var(--font-mono); font-weight: 700; color: #00d2ff; font-size: 1.1rem;">
+            {{ interview.final_score if interview.final_score else '0.0%' }}
+          </span>
+        </div>
+
+        <div>
+          <span style="display: block; font-size: 0.65rem; color: var(--text-muted); font-family: var(--font-mono); text-transform: uppercase; margin-bottom: 4px;">System Metrics Status</span>
+          <span style="font-weight: 600; color: {% if interview.status == 'Passed' %}#00E676{% else %}#FF5252{% endif %};">
+            {{ interview.status if interview.status else 'Needs Improvement' }}
+          </span>
+        </div>
+
+      </div>
+    </td>
+  </tr>
+  {% else %}
+  <tr>
+    <td colspan="3" style="padding: 60px 24px; text-align: center; font-family: var(--font-sans); color: var(--text-muted); font-size: 1rem;">
+      No secure interview logs found inside storage cores.
+    </td>
+  </tr>
+  {% endfor %}
+</tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      let openedSessions = JSON.parse(localStorage.getItem("nexus_unlocked_sessions")) || [];
+      
+      document.querySelectorAll(".vault-row").forEach(row => {
+        let sessionId = row.getAttribute("data-sid");
+        if (openedSessions.includes(sessionId)) {
+          row.classList.add("session-opened");
+          let iconEl = document.getElementById("icon-" + sessionId);
+          if (iconEl) iconEl.innerText = "🔓";
+        }
+      });
+    });
+
+    function markSessionOpened(sessionId) {
+      let openedSessions = JSON.parse(localStorage.getItem("nexus_unlocked_sessions")) || [];
+      if (!openedSessions.includes(sessionId)) {
+        openedSessions.push(sessionId);
+        localStorage.setItem("nexus_unlocked_sessions", JSON.stringify(openedSessions));
+      }
+    }
+  </script>
+</body>
+</html>

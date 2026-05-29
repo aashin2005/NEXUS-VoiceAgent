@@ -1,0 +1,432 @@
+/* ============================================
+   NEXUS UI - Ultra-Futuristic Dark Theme
+   Premium Glassmorphism Design System
+   ============================================ */
+
+:root {
+  --bg-void: #000000;
+  --bg-obsidian: #030712;
+  --bg-deep: #0a0f1a;
+  --bg-card: rgba(3, 7, 18, 0.7);
+  --bg-glass: rgba(0, 210, 255, 0.03);
+  --bg-glass-hover: rgba(0, 210, 255, 0.08);
+  
+  --accent-cyan: #00d2ff;
+  --accent-cyan-dim: rgba(0, 210, 255, 0.5);
+  --accent-cyan-glow: rgba(0, 210, 255, 0.15);
+  --accent-cyan-subtle: rgba(0, 210, 255, 0.08);
+  
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  --text-muted: #475569;
+  
+  --border-glass: rgba(0, 210, 255, 0.12);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  
+  --grid-line: rgba(0, 210, 255, 0.02);
+  
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-void);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ---------- GRID BACKGROUND OVERLAY ---------- */
+.grid-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.grid-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, transparent 20%, var(--bg-void) 80%);
+}
+
+/* ---------- APP CONTAINER ---------- */
+.app-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 40px 20px;
+}
+
+.main-content {
+  width: 100%;
+  max-width: 800px;
+}
+
+/* ---------- UTILITIES & TEXT ---------- */
+.page-header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.page-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.page-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+}
+
+.page-description {
+  color: var(--text-secondary);
+  margin-top: 8px;
+  font-size: 1rem;
+}
+
+/* ---------- GLASS CARD ---------- */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+
+.card-header {
+  border-bottom: 1px solid var(--border-glass);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- FORM & INPUTS ---------- */
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.form-input {
+  width: 100%;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: 6px;
+  color: var(--text-primary);
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+  background: var(--bg-glass-hover);
+  box-shadow: 0 0 12px var(--accent-cyan-glow);
+}
+
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2300d2ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+/* ---------- BUTTONS ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  font-family: var(--font-sans);
+}
+
+.btn-primary {
+  background: var(--accent-cyan);
+  color: var(--bg-void);
+  border: 1px solid var(--accent-cyan);
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--accent-cyan);
+  box-shadow: 0 0 16px var(--accent-cyan-dim);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-glass);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-glass-hover);
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
+/* ---------- CHIPS & METRICS ---------- */
+.matrix-chip {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 4px 8px;
+  background: var(--accent-cyan-subtle);
+  border: 1px solid var(--border-glass);
+  color: var(--accent-cyan);
+  border-radius: 4px;
+}
+
+/* ---------- NEON GLOWING UNDERLINE AND HOVER ANIMATIONS ---------- */
+.neon-header-container {
+  display: inline-block;
+  cursor: default;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.neon-header-container:hover {
+  transform: scale(1.04);
+}
+
+.neon-underline-text {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 12px;
+  font-family: "Nunito", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 650;
+  font-style: normal;
+}
+
+.neon-underline-text::after {
+  content: '';
+  position: absolute;
+  left: 15%;            
+  width: 70%;           
+  bottom: 0;
+  height: 2px;          
+  background-color: var(--accent-cyan);
+  border-radius: 2px;
+  box-shadow: 
+    0 0 4px var(--accent-cyan),
+    0 0 12px var(--accent-cyan-dim),
+    0 0 20px rgba(0, 210, 255, 0.5);
+  transition: box-shadow 0.3s ease;
+}
+
+.neon-header-container:hover .neon-underline-text::after {
+  box-shadow: 
+    0 0 12px var(--accent-cyan),
+    0 0 25px var(--accent-cyan),
+    0 0 40px rgba(0, 210, 255, 1);
+}
+
+/* ---------- DASHBOARD CARD HOVER ANIMATION ---------- */
+.portal-card-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.portal-card-container:hover {
+  transform: scale(1.03); 
+}
+
+/* ---------- DARK THEME OPTION DROPDOWN SYSTEM OVERRIDES ---------- */
+.form-select option {
+  background-color: #030712 !important; 
+  color: #ffffff !important;            
+  padding: 12px !important;
+  font-family: var(--font-sans) !important;
+}
+
+.form-select:focus {
+  background-color: rgba(0, 210, 255, 0.05) !important;
+}
+
+/* ---------- INDEPENDENT INNER INPUT BOX HOVER ANIMATION ---------- */
+.form-group-animate {
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.form-group-animate:hover {
+  transform: scale(1.02); 
+  background: rgba(0, 210, 255, 0.02); 
+}
+
+.form-group-animate:hover .form-input {
+  border-color: var(--accent-cyan-dim);
+  box-shadow: 0 0 10px rgba(0, 210, 255, 0.1);
+}
+
+/* ---------- CUSTOM NEON NUMERIC SPINNER ---------- */
+.numeric-spinner-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 120px; 
+  margin: 0 auto;   
+}
+
+.numeric-spinner {
+  text-align: center;
+  font-size: 1.5rem !important;
+  font-family: var(--font-mono) !important;
+  font-weight: 700;
+  color: var(--accent-cyan) !important;
+  padding-right: 40px !important; 
+}
+
+.numeric-spinner::-webkit-outer-spin-button,
+.numeric-spinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.numeric-spinner {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.spinner-actions {
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  bottom: 1px;
+  width: 34px;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--border-glass);
+  background: rgba(3, 7, 18, 0.8);
+  border-radius: 0 5px 5px 0;
+  overflow: hidden;
+}
+
+.spinner-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.spinner-btn:hover {
+  background: var(--bg-glass-hover);
+  color: var(--accent-cyan);
+  text-shadow: 0 0 5px var(--accent-cyan);
+}
+
+.spinner-btn.up {
+  border-bottom: 1px solid var(--border-glass);
+}
+/* ==============================================================================
+   🎙️ NEXUS GLOBAL SPEECH RECOGNITION STYLE ENGINE 
+   ============================================================================== */
+
+/* The Voice button container placement rule */
+.voice-record-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Hover glow matching your custom cyan nexus accents */
+.voice-record-btn:hover {
+    background: rgba(0, 242, 254, 0.05);
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+    box-shadow: 0 0 12px var(--accent-cyan-glow);
+}
+
+/* 🛑 DYNAMIC ACTIVE STATE: Turns a clean translucent alert-red when listening */
+.voice-record-btn.recording-active {
+    background-color: rgba(255, 74, 74, 0.15) !important;
+    border-color: #ff4a4a !important;
+    color: #ff4a4a !important;
+    animation: micPulseGlow 1.5s infinite ease-in-out;
+}
+
+/* Smooth keyframe matrix for the glowing live-mic pulse effect */
+@keyframes micPulseGlow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 74, 74, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 12px rgba(255, 74, 74, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 74, 74, 0);
+    }
+}

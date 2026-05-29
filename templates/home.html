@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS | Command Portal</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@650&display=swap" rel="stylesheet">
+
+  <style>
+    /* ======================================================== */
+    /* UNIVERSAL CLOUD-HOSTED BACKGROUND LAYER ENGINE          */
+    /* ======================================================== */
+    .dynamic-bg-layer {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: -9999 !important; /* Positions it underneath your text & cards */
+      
+      /* PASTE YOUR CLOUD DIRECT LINK IN THE QUOTES BELOW */
+      background-image: url("https://i.postimg.cc/YSSygRG9/Untitled-design.jpg") !important;
+      
+      background-position: center center !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+      background-color: #050508 !important; /* Fallback accent background color */
+    }
+
+    /* Keep parent layouts entirely transparent to prevent overlapping blocks */
+    html, body, .grid-background, .app-container, main, .main-content {
+      background: transparent !important;
+      background-color: transparent !important;
+    }
+
+    .app-container {
+      position: relative !important;
+      z-index: 10 !important;
+    }
+
+    /* Premium glassmorphism style configurations */
+    .glass-card {
+      background: rgba(5, 7, 12, 0.45) !important; 
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    }
+
+    .glass-card:hover {
+      background: rgba(5, 7, 12, 0.65) !important;
+      border-color: var(--accent-cyan, #00f2fe) !important;
+      box-shadow: 0 12px 32px rgba(0, 242, 254, 0.15) !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="dynamic-bg-layer"></div>
+  <div class="grid-background"></div>
+
+  <div class="app-container">
+    <main class="main-content" style="max-width: 800px;">
+      
+      <section class="page-header" style="margin-bottom: 64px; text-align: center;">
+        <div class="neon-header-container">
+          <h1 class="page-heading neon-underline-text" style="font-size: 3.5rem; font-weight: 700;">
+            AI Mock Interview Agent
+          </h1>
+        </div>
+      </section>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+        
+        <div class="portal-card-container">
+          <article class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 32px; min-height: 220px; height: 100%;">
+            <div>
+              <span class="matrix-chip" style="letter-spacing: 0.05em;">STUDENT PORTAL</span>
+              <h2 class="card-title" style="margin-top: 20px; margin-bottom: 0;">Start Interview</h2>
+            </div>
+            <a href="/student" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 24px;">Next Page</a>
+          </article>
+        </div>
+
+        <div class="portal-card-container">
+          <article class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 32px; min-height: 220px; height: 100%;">
+            <div>
+              <span class="matrix-chip" style="letter-spacing: 0.05em;">ADMIN PORTAL</span>
+              <h2 class="card-title" style="margin-top: 20px; margin-bottom: 0;">View History</h2>
+            </div>
+            <a href="/admin" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 24px;">Open Dashboard </a>
+          </article>
+        </div>
+        
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>

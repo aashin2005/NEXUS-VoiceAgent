@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS | Interview Setup</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@650&display=swap" rel="stylesheet">
+
+  <style>
+    /* ======================================================== */
+    /* UNIVERSAL CLOUD-HOSTED BACKGROUND LAYER ENGINE          */
+    /* ======================================================== */
+    .dynamic-bg-layer {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: -9999 !important; /* Positions it underneath your text & cards */
+      
+      /* PASTE YOUR CLOUD DIRECT LINK IN THE QUOTES BELOW */
+      background-image: url("https://i.postimg.cc/YSSygRG9/Untitled-design.jpg") !important;
+      
+      background-position: center center !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+      background-color: #050508 !important; /* Fallback dark tone */
+    }
+
+    /* Force all parent layouts to be transparent so the background peeks through */
+    html, body, .grid-background, .app-container, main, .main-content {
+      background: transparent !important;
+      background-color: transparent !important;
+    }
+
+    .app-container {
+      position: relative !important;
+      z-index: 10 !important;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Consistent semi-translucent glassmorphism styling for the details card */
+    .glass-card {
+      background: rgba(5, 7, 12, 0.45) !important; 
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      padding: 40px 32px !important;
+      border-radius: 12px !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="dynamic-bg-layer"></div>
+  <div class="grid-background"></div>
+
+  <div class="app-container">
+    <main class="main-content" style="max-width: 600px; width: 100%;">
+
+      <div class="portal-card-container">
+        <article class="glass-card">
+          <header class="card-header" style="margin-bottom: 24px; padding-bottom: 12px;">
+            <span class="matrix-chip">FILL UP DETAILS TO START</span>
+          </header>
+          
+          <form action="/student" method="POST">
+            
+            <div class="form-group form-group-animate">
+              <label class="form-label">Your Name</label>
+              <input type="text" name="name" class="form-input" placeholder="Type your name here..." required>
+            </div>
+
+            <div class="form-group form-group-animate">
+              <label class="form-label">Choose your area</label>
+              <select name="subject" class="form-input form-select" required>
+                <option value="Python Programming">Python Programming (Coding & Logic)</option>
+                <option value="Web Development">Web Development (HTML, CSS & JavaScript)</option>
+                <option value="Apps & Games">Building Apps & Games (Algorithms)</option>
+                <option value="Cloud & Internet Networks">Cloud & Internet Networks (DevOps)</option>
+              </select>
+            </div>
+
+            <div class="form-group form-group-animate">
+              <label class="form-label">Choose difficulty</label>
+              <select name="level" class="form-input form-select" required>
+                <option value="Beginner">Beginner (Easy Questions)</option>
+                <option value="Intermediate">Intermediate (Medium Challenge)</option>
+                <option value="Advanced">Advanced (Expert Mode)</option>
+              </select>
+            </div>
+
+            <div class="form-group form-group-animate" style="margin-bottom: 36px;">
+              <label class="form-label">How many questions?</label>
+              <div class="numeric-spinner-wrapper">
+                <input type="number" name="num_questions" class="form-input numeric-spinner" 
+                       min="1" max="15" value="5" step="1" required readonly>
+                <div class="spinner-actions">
+                  <button type="button" class="spinner-btn up" onclick="this.parentNode.previousElementSibling.stepUp()">▲</button>
+                  <button type="button" class="spinner-btn down" onclick="this.parentNode.previousElementSibling.stepDown()">▼</button>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 1.1rem; padding: 14px;">
+              Start My Interview
+            </button>
+          </form>
+        </article>
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>

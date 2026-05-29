@@ -1,0 +1,66 @@
+[
+    {
+        "name": "ashin",
+        "subject": "Python Programming",
+        "score": 0.0,
+        "final_score": "0.0%",
+        "status": "Needs Improvement",
+        "performance": "Needs Improvement",
+        "date": "2026-05-27 08:50",
+        "results": [
+            {
+                "question": "Given a Python script causing memory leaks, how would you identify the source?",
+                "student_answer": "nakjbawjhdbj,a",
+                "correct_answer": "Standard developer guidelines apply.",
+                "feedback": "The candidate's answer does not address the expected concept of identifying memory leaks in a Python script, lacking relevance and coherence.",
+                "marks": 0
+            },
+            {
+                "question": "How would you optimize a slow Python function with multiple nested loops?",
+                "student_answer": "flkanfsjfnaekjfm",
+                "correct_answer": "Standard developer guidelines apply.",
+                "feedback": "The candidate's response was completely unrelated to the expected concept, indicating a lack of comprehension of the task and poor preparation.",
+                "marks": 0
+            },
+            {
+                "question": "What approach would you take to handle asynchronous data flows in a Python web application?",
+                "student_answer": "kajwfbakwjfkbawjfhawf",
+                "correct_answer": "Standard developer guidelines apply.",
+                "feedback": "The candidate's answer does not demonstrate any understanding of the concept of handling asynchronous data flows in a Python web application.",
+                "marks": 0
+            }
+        ]
+    },
+    {
+        "name": "ashin",
+        "subject": "Web Development",
+        "score": 0.0,
+        "final_score": "0.0%",
+        "status": "Needs Improvement",
+        "performance": "Needs Improvement",
+        "date": "2026-05-29 12:07",
+        "results": [
+            {
+                "question": "Given a slow webpage, how would you optimize image loading?",
+                "student_answer": " automatic",
+                "correct_answer": "Standard developer guidelines apply.",
+                "feedback": "The candidate's answer lacks specific details on how to optimize image loading. Automatic is not a method or technique for optimizing webpage performance.",
+                "marks": 0
+            },
+            {
+                "question": "How would you handle concurrent API calls causing race conditions?",
+                "student_answer": "asdfghjkl",
+                "correct_answer": "Standard developer guidelines apply.",
+                "feedback": "Completely lacks understanding of the problem and relevant concepts. Failed to apply standard developer guidelines to address concurrent API calls and potential race conditions.",
+                "marks": 0
+            },
+            {
+                "question": "Given memory leaks in a Single Page Application, what debugging steps?",
+                "student_answer": "asdfghm,.",
+                "correct_answer": "Standard developer guidelines apply.",
+                "feedback": "Unresponse or gibberish does not demonstrate a clear understanding of debugging steps for memory leaks in a Single Page Application. This candidate's answer was uninformative and failed to adhere to professional standards.",
+                "marks": 0
+            }
+        ]
+    }
+]

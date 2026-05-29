@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS | Live Interview</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@650&display=swap" rel="stylesheet">
+
+  <style>
+    /* ======================================================== */
+    /* UNIVERSAL CLOUD-HOSTED BACKGROUND LAYER ENGINE          */
+    /* ======================================================== */
+    .dynamic-bg-layer {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: -9999 !important; /* Forces it below text inputs and textareas */
+      
+      /* PASTE YOUR CLOUD DIRECT LINK IN THE QUOTES BELOW */
+      background-image: url("https://i.postimg.cc/YSSygRG9/Untitled-design.jpg") !important;
+      
+      background-position: center center !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+      background-color: #050508 !important; /* Fallback accent background color */
+    }
+
+    /* Force all structural components to be transparent to let the artwork breathe */
+    html, body, .grid-background, .app-container, main, .main-content {
+      background: transparent !important;
+      background-color: transparent !important;
+    }
+
+    .app-container {
+      position: relative !important;
+      z-index: 10 !important;
+    }
+
+    /* Premium translucent glassmorphic updates for question elements */
+    .glass-card {
+      background: rgba(5, 7, 12, 0.45) !important; 
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    }
+
+    /* Smooth card pagination transition overrides */
+    .question-step {
+      display: none;
+    }
+    .question-step.active {
+      display: block;
+      animation: interviewCardFadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    }
+    @keyframes interviewCardFadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Custom hover overrides for the Back Button */
+    .btn-animated-back {
+      transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    }
+    .btn-animated-back:hover {
+      transform: scale(1.05);
+      border-color: var(--accent-cyan) !important;
+      color: var(--accent-cyan) !important;
+      box-shadow: 0 0 12px var(--accent-cyan-glow) !important;
+      background: var(--bg-glass-hover) !important;
+    }
+
+    /* PREMIUM NEXUS AUDIO CONTROLS */
+    .sound-control-panel {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .voice-selector-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .voice-selector {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      outline: none;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .voice-selector:hover {
+      border-color: var(--accent-cyan);
+      background: rgba(0, 242, 254, 0.05);
+    }
+    .voice-selector:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 12px var(--accent-cyan-glow);
+    }
+    .voice-selector option {
+      background: #121214;
+      color: #fff;
+    }
+
+    .replay-control {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .replay-btn-upgraded {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      width: 52px;
+      height: 52px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .replay-btn-upgraded:hover {
+      transform: scale(1.05);
+      border-color: var(--accent-cyan);
+      color: #ffffff;
+      background: rgba(0, 242, 254, 0.1);
+      box-shadow: 0 0 16px var(--accent-cyan-glow);
+    }
+
+    .replay-btn-upgraded.speaking {
+      animation: nexusPulseAudio 1s infinite alternate cubic-bezier(0.4, 0, 0.6, 1);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      background: rgba(0, 242, 254, 0.15);
+    }
+
+    @keyframes nexusPulseAudio {
+      0% { box-shadow: 0 0 12px rgba(0, 242, 254, 0.3); }
+      100% { box-shadow: 0 0 24px rgba(0, 242, 254, 0.7); }
+    }
+
+    .replay-icon-spec {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* 🎙️ NEXUS SPEECH RECOGNITION INTERACTION INTERFACE STYLES */
+    .voice-record-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.02);
+      color: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .voice-record-btn:hover {
+      background: rgba(0, 242, 254, 0.05);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      box-shadow: 0 0 12px var(--accent-cyan-glow);
+    }
+
+    /* PULSATING GLOW WHEN MICROPHONE STREAM DETECTS ACTIVE SPEECH */
+    .voice-record-btn.recording-active {
+      background-color: rgba(255, 74, 74, 0.15) !important;
+      border-color: #ff4a4a !important;
+      color: #ff4a4a !important;
+      animation: micPulseGlow 1.5s infinite ease-in-out;
+    }
+
+    @keyframes micPulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(255, 74, 74, 0.4); }
+      70% { box-shadow: 0 0 0 12px rgba(255, 74, 74, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 74, 74, 0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="dynamic-bg-layer"></div>
+  <div class="grid-background"></div>
+
+  <div class="app-container">
+    <main class="main-content" style="max-width: 750px;">
+
+      <form action="/submit" method="POST" id="interview-form">
+        <input type="hidden" name="name" value="{{ name }}">
+        <input type="hidden" name="subject" value="{{ subject }}">
+
+        {% for q in questions %}
+        <input type="hidden" name="questions" value="{{ q }}">
+        
+        <div class="question-step {% if loop.first %}active{% endif %}" id="step-{{ loop.index0 }}">
+          <div class="portal-card-container">
+            <article class="glass-card" style="padding: 36px 36px 24px 36px;">
+              
+              <header class="card-header" style="margin-bottom: 28px; padding-bottom: 16px; display: flex; justify-content: space-between; align-items: center; gap: 16px;">
+                <span class="matrix-chip">QUESTION 0{{ loop.index }} OF 0{{ questions|length }}</span>
+                
+                <div style="text-align: right; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4;">
+                  <span>NAME: <span style="color: var(--accent-cyan); font-weight: 600; margin-right: 12px;">{{ name }}</span></span>
+                  <span>TOPIC: <span style="color: var(--accent-cyan); font-weight: 600; margin-right: 12px;">{{ subject }}</span></span>
+                  <span>PROGRESS: <span id="progress-tracker-{{ loop.index0 }}" style="color: var(--accent-cyan); font-weight: 700;">{{ loop.index }} / {{ questions|length }}</span></span>
+                </div>
+              </header>
+              
+              <p id="question-p-{{ loop.index0 }}" style="font-family: 'Nunito', sans-serif; font-size: 1.45rem; line-height: 1.5; color: var(--text-primary); margin-bottom: 28px; min-height: 60px; font-weight: 650;">
+                {{ q }}
+              </p>
+              
+              <div class="form-group form-group-animate" style="margin-bottom: 0;">
+                <textarea name="answers" id="answer-box-{{ loop.index0 }}" class="form-input answer-field" 
+                          style="min-height: 180px; font-family: var(--font-sans); font-size: 1.05rem; resize: vertical; line-height: 1.6; padding: 16px;" 
+                          placeholder="Type your answer here or click 'Record Answer' to use voice input... Don't worry, just try...!"></textarea>
+              </div>
+
+              <footer class="sound-control-panel">
+                <div class="replay-control">
+                  <button type="button" id="replay-btn-upgraded-{{ loop.index0 }}" class="replay-btn-upgraded" onclick="speakCurrentQuestion()" title="Replay Question Audio">
+                    <svg class="replay-icon-spec" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+                    </svg>
+                  </button>
+                </div>
+
+                <div class="voice-selector-container">
+                  <select class="voice-selector" id="voiceSelect" title="Select Narrator Voice Profile">
+                    <option value="female1">📡 premium female 1 (clear)</option>
+                    <option value="female2">📡 premium female 2 (calm)</option>
+                    <option value="male1">📡 premium male 1 (smooth mature)</option>
+                    <option value="male2">📡 premium male 2 (calm grounded)</option>
+                  </select>
+                </div>
+              </footer>
+            </article>
+          </div>
+        </div>
+        {% endfor %}
+
+        <div style="display: flex; justify-content: space-between; margin-top: 32px; align-items: center;">
+          <button type="button" class="btn btn-secondary btn-animated-back" id="prev-btn" style="visibility: hidden; padding: 12px 28px; font-size: 1rem; font-weight: 600;">
+            ← Back
+          </button>
+          
+          <div style="display: flex; gap: 16px; align-items: center;">
+            <button type="button" id="voice-recognition-btn" class="voice-record-btn" onclick="toggleVoiceRecognition()" title="Dictate Answer Natively">
+              <span>🎙️</span> <span id="voice-btn-text">Record Answer</span>
+            </button>
+
+            <button type="button" class="btn btn-primary" id="next-btn" style="min-width: 220px; justify-content: center; padding: 14px 28px; font-size: 1rem;">
+              Next Question →
+            </button>
+          </div>
+        </div>
+      </form>
+
+    </main>
+  </div>
+
+  <script>
+    const steps = document.querySelectorAll('.question-step');
+    const totalSteps = steps.length;
+    let currentStep = 0;
+
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const form = document.getElementById('interview-form');
+    const voiceSelect = document.getElementById('voiceSelect');
+    const voiceRecBtn = document.getElementById('voice-recognition-btn');
+    const voiceBtnText = document.getElementById('voice-btn-text');
+
+    // Store active audio context globally so we can stop overlapping voices cleanly
+    let currentAudioInstance = null;
+    
+    // Core Voice Recognition Variables
+    let recognition = null;
+    let isRecording = false;
+
+    // ==============================================================================
+    // 🎙️ HIGH ACCURACY BROWSER-NATIVE SPEECH-TO-TEXT ENGINE
+    // ==============================================================================
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new SpeechRecognition();
+      
+      recognition.continuous = true;     // Keeps listening if candidate pauses to think
+      recognition.interimResults = true;  // Renders text on-the-fly instantly
+      recognition.lang = 'en-US';        // Standard English language profile alignment
+    }
+
+    function toggleVoiceRecognition() {
+      if (!recognition) {
+        alert("Your current browser profile blocks speech modules. Please switch to Google Chrome or Microsoft Edge.");
+        return;
+      }
+
+      // Grab the specific active question step textarea box
+      const activeTextArea = document.getElementById(`answer-box-${currentStep}`);
+
+      if (!isRecording) {
+        isRecording = true;
+        activeTextArea.value = ""; // Clear box fresh for clean live notes input
+        voiceRecBtn.classList.add('recording-active');
+        voiceBtnText.innerText = "Listening...";
+        
+        // Mute active question narration if user starts speaking over it
+        if (currentAudioInstance) currentAudioInstance.pause();
+        
+        recognition.start();
+
+        recognition.onresult = (event) => {
+          let runningTranscript = '';
+          for (let i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+              runningTranscript += event.results[i][0].transcript;
+            } else {
+              runningTranscript += event.results[i][0].transcript;
+            }
+          }
+          if (runningTranscript.length > 0) {
+            activeTextArea.value = runningTranscript;
+          }
+        };
+
+        recognition.onerror = (event) => {
+          console.error("Speech Recognition Engine Tracking Fault:", event.error);
+          stopRecordingSession();
+        };
+
+        recognition.onend = () => {
+          if (isRecording) stopRecordingSession();
+        };
+
+      } else {
+        stopRecordingSession();
+      }
+    }
+
+    function stopRecordingSession() {
+      isRecording = false;
+      recognition.stop();
+      voiceRecBtn.classList.remove('recording-active');
+      voiceBtnText.innerText = "Record Answer";
+    }
+
+    // ==============================================================================
+    // 🔊 CENTRAL AUDIO ENGINE (Edge TTS Client Middleware)
+    // ==============================================================================
+    async function speakCurrentQuestion() {
+      const activeCard = steps[currentStep];
+      if (!activeCard) return;
+
+      const replayBtn = activeCard.querySelector('.replay-btn-upgraded');
+      const questionPara = activeCard.querySelector('p[id^="question-p-"]');
+      const questionText = questionPara.innerText.replace(/[\r\n]+/g, " ");
+      const selectedProfile = voiceSelect.value;
+
+      // Clean up previous voice playback immediately if active
+      if (currentAudioInstance) {
+        currentAudioInstance.pause();
+        currentAudioInstance = null;
+        document.querySelectorAll('.replay-btn-upgraded').forEach(btn => btn.classList.remove('speaking'));
+      }
+
+      // If recording, skip autoplays to prevent mic audio loops
+      if (isRecording) return;
+
+      // Visual pulse state turned ON
+      replayBtn.classList.add('speaking');
+
+      try {
+        const response = await fetch('/api/tts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            text: `Question ${currentStep + 1}: ${questionText}`,
+            voice: selectedProfile
+          })
+        });
+
+        if (!response.ok) throw new Error("Audio stream network tracking drop.");
+
+        const audioBlob = await response.blob();
+        const audioUrl = URL.createObjectURL(audioBlob);
+        
+        currentAudioInstance = new Audio(audioUrl);
+        
+        currentAudioInstance.onended = () => { replayBtn.classList.remove('speaking'); };
+        currentAudioInstance.onerror = () => { replayBtn.classList.remove('speaking'); };
+        
+        await currentAudioInstance.play();
+
+      } catch (error) {
+        console.error("📡 TTS Engine Frontend Stream Failure:", error);
+        replayBtn.classList.remove('speaking');
+      }
+    }
+
+    voiceSelect.addEventListener('change', () => {
+      speakCurrentQuestion();
+    });
+
+    function updateStepVisibility() {
+      // Force recording loop down safely before transitioning view cards
+      if (isRecording) stopRecordingSession();
+
+      steps.forEach((step, idx) => {
+        if(idx === currentStep) {
+          step.classList.add('active');
+        } else {
+          step.classList.remove('active');
+        }
+      });
+
+      if (currentStep === 0) {
+        prevBtn.style.visibility = 'hidden';
+      } else {
+        prevBtn.style.visibility = 'visible';
+      }
+
+      if (currentStep === totalSteps - 1) {
+        nextBtn.innerText = "Finish and Submit Interview →";
+      } else {
+        nextBtn.innerText = "Next Question →";
+      }
+
+      // Trigger narration with a brief delay to allow CSS animations to breathe
+      setTimeout(() => {
+        speakCurrentQuestion();
+      }, 400);
+    }
+
+    nextBtn.addEventListener('click', () => {
+      const currentTextarea = steps[currentStep].querySelector('.answer-field');
+      if (!currentTextarea.value.trim()) {
+        currentTextarea.style.borderColor = "#ff4a4a";
+        currentTextarea.style.boxShadow = "0 0 12px rgba(255, 74, 74, 0.2)";
+        currentTextarea.placeholder = "Please write or record an answer first before hitting next!";
+        return;
+      } else {
+        currentTextarea.style.borderColor = "";
+        currentTextarea.style.boxShadow = "";
+      }
+
+      if (currentStep < totalSteps - 1) {
+        currentStep++;
+        updateStepVisibility();
+      } else {
+        // Turn off sound instances safely before posting form data out
+        if (currentAudioInstance) currentAudioInstance.pause();
+        form.submit();
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentStep > 0) {
+        currentStep--;
+        updateStepVisibility();
+      }
+    });
+    
+    // Core Engine Boot Initialization
+    updateStepVisibility();
+  </script>
+</body>
+</html>

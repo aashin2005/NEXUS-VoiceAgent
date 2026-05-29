@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS | Evaluation Results</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ======================================================== */
+    /* UNIVERSAL CLOUD-HOSTED BACKGROUND LAYER ENGINE          */
+    /* ======================================================== */
+    .dynamic-bg-layer {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: -9999 !important; /* Locks artwork safely below analysis metrics */
+      
+      /* PASTE YOUR CLOUD DIRECT LINK IN THE QUOTES BELOW */
+      background-image: url("https://i.postimg.cc/YSSygRG9/Untitled-design.jpg") !important;
+      
+      background-position: center center !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+      background-color: #050508 !important; /* System dark tone fallback */
+    }
+
+    /* Keep parent layouts translucent and transparent */
+    html, body, .grid-background, .app-container, main, .main-content {
+      background: transparent !important;
+      background-color: transparent !important;
+    }
+
+    .app-container {
+      position: relative !important;
+      z-index: 10 !important;
+    }
+
+    /* Premium translucent glassmorphism upgrades for scorecard matrix panels */
+    .glass-card {
+      background: rgba(5, 7, 12, 0.45) !important; 
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    }
+
+    .glass-card:hover {
+      background: rgba(5, 7, 12, 0.55) !important;
+      border-color: rgba(0, 242, 254, 0.3) !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="dynamic-bg-layer"></div>
+  <div class="grid-background"></div>
+
+  <div class="app-container">
+    <main class="main-content">
+      
+      <section class="page-header">
+        <p class="page-title">DIAGNOSTIC_COMPLETE</p>
+        <h1 class="page-heading">Evaluation Ledger Summary</h1>
+      </section>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 32px;">
+        <div class="glass-card" style="padding: 20px; text-align: center;">
+          <p class="form-label" style="margin-bottom: 4px;">Candidate</p>
+          <p style="font-size: 1.15rem; font-weight: 600; font-family: var(--font-mono); color: #ffffff;">{{ data.name }}</p>
+        </div>
+        <div class="glass-card" style="padding: 20px; text-align: center;">
+          <p class="form-label" style="margin-bottom: 4px;">Aggregate Score</p>
+          <p style="font-size: 1.5rem; font-weight: 700; color: var(--accent-cyan); font-family: var(--font-mono);">{{ data.score }}%</p>
+        </div>
+        <div class="glass-card" style="padding: 20px; text-align: center;">
+          <p class="form-label" style="margin-bottom: 4px;">Performance Index</p>
+          <p style="font-size: 1.15rem; font-weight: 600; color: #10b981; font-family: var(--font-mono);">{{ data.performance }}</p>
+        </div>
+      </div>
+
+      <h2 class="form-label" style="font-size: 0.9rem; margin-bottom: 16px;">Surgical Breakdown Records</h2>
+
+      {% for result in data.results %}
+      <article class="glass-card" style="margin-bottom: 20px; padding: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; border-bottom: 1px solid var(--border-glass); padding-bottom: 8px;">
+          <span class="matrix-chip">METRIC_0{{ loop.index }}</span>
+          <span style="font-family: var(--font-mono); font-size: 0.9rem; color: var(--accent-cyan);">SCORE: {{ result.marks }}/10</span>
+        </div>
+        
+        <p style="font-size: 1rem; font-weight: 500; margin-bottom: 12px; color: #ffffff;">Q: <span style="color: var(--text-secondary);">{{ result.question }}</span></p>
+        <p style="font-size: 0.9rem; font-family: var(--font-mono); background: rgba(0,0,0,0.3); padding: 12px; border-radius: 4px; margin-bottom: 16px; border-left: 2px solid var(--text-muted); color: #e4e4e7;">
+          Ans: {{ result.student_answer }}
+        </p>
+        
+        <p class="form-label" style="color: var(--accent-cyan); margin-bottom: 4px;">AI Critique Feedback:</p>
+        <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5;">{{ result.feedback }}</p>
+      </article>
+      {% endfor %}
+
+      <div style="display: flex; gap: 16px; margin-top: 32px; justify-content: center;">
+        <a href="/" class="btn btn-secondary">Return to Portal</a>
+        <a href="/student" class="btn btn-primary">Initialize New Matrix Session</a>
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>

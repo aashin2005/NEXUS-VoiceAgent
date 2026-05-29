@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS | Session Report</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@650;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ======================================================== */
+    /* UNIVERSAL CLOUD-HOSTED BACKGROUND LAYER ENGINE          */
+    /* ======================================================== */
+    .dynamic-bg-layer {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: -9999 !important; /* Locks background behind the transcript reports safely */
+      
+      /* PASTE YOUR CLOUD DIRECT LINK IN THE QUOTES BELOW */
+      background-image: url("https://i.postimg.cc/YSSygRG9/Untitled-design.jpg") !important;
+      
+      background-position: center center !important;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+      background-color: #050508 !important; /* System dark fallback */
+    }
+
+    /* Force layouts to transparent to let background artwork display beautifully */
+    html, body, .grid-background, .app-container, main, .main-content {
+      background: transparent !important;
+      background-color: transparent !important;
+    }
+
+    .app-container {
+      position: relative !important;
+      z-index: 10 !important;
+    }
+
+    /* Premium glassmorphism layout card base setup */
+    .glass-card {
+      background: rgba(5, 7, 12, 0.45) !important; 
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+
+    /* Hover scale configuration rules */
+    .btn-animated-back {
+      transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    }
+    .btn-animated-back:hover {
+      transform: scale(1.05);
+      border-color: var(--accent-cyan) !important;
+      color: var(--accent-cyan) !important;
+      box-shadow: 0 0 12px var(--accent-cyan-glow) !important;
+      background: var(--bg-glass-hover) !important;
+    }
+
+    .stat-box-card {
+      background: rgba(0, 210, 255, 0.02) !important;
+      border: 1px solid rgba(0, 210, 255, 0.08) !important;
+      border-radius: 8px;
+      padding: 20px 24px;
+      transition: all 0.25s ease;
+    }
+    .stat-box-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0, 210, 255, 0.25) !important;
+      box-shadow: 0 4px 20px rgba(0, 210, 255, 0.08);
+      background: rgba(0, 210, 255, 0.04) !important;
+    }
+
+    .qa-block {
+      border-left: 3px solid rgba(0, 210, 255, 0.2);
+      padding-left: 20px;
+      margin-bottom: 30px;
+    }
+    .qa-block:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="dynamic-bg-layer"></div>
+  <div class="grid-background"></div>
+
+  <div class="app-container">
+    <main class="main-content" style="max-width: 850px;">
+      
+      <section class="page-header" style="text-align: left; display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px;">
+        <div>
+          <span class="matrix-chip" style="letter-spacing: 0.05em; font-size: 0.65rem;">VERIFIED ASSESSMENT</span>
+          <h1 class="page-heading" style="font-family: 'Nunito', sans-serif; font-size: 2.2rem; font-weight: 700; margin-top: 6px;">
+            Candidate Report Card
+          </h1>
+        </div>
+        <a href="/admin" class="btn btn-secondary btn-animated-back" style="padding: 12px 24px; font-size: 0.95rem; font-weight: 600;">
+          ← Back to Ledger
+        </a>
+      </section>
+
+      <div class="portal-card-container">
+        <article class="glass-card" style="padding: 40px;">
+          
+          <div style="border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 24px; margin-bottom: 32px;">
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">
+              CANDIDATE IDENTITY
+            </span>
+            <h2 style="font-family: 'Nunito', sans-serif; font-size: 1.8rem; color: var(--text-primary); margin: 0; font-weight: 700;">
+              👤 {{ report.name }}
+            </h2>
+            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); display: block; margin-top: 8px;">
+              Session Logged: {{ report.date }}
+            </span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 40px;">
+            
+            <div class="stat-box-card">
+              <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; display: block; margin-bottom: 8px;">
+                TOPIC AREA
+              </span>
+              <span class="matrix-chip" style="font-size: 0.7rem; background: rgba(0, 210, 255, 0.08); display: inline-block;">
+                {{ report.subject }}
+              </span>
+            </div>
+
+            <div class="stat-box-card">
+              <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; display: block; margin-bottom: 4px;">
+                EVALUATION RATING
+              </span>
+              <span style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; color: var(--accent-cyan);">
+                {{ report.score }}%
+              </span>
+            </div>
+
+            <div class="stat-box-card">
+              <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; display: block; margin-bottom: 6px;">
+                SYSTEM METRICS STATUS
+              </span>
+              <span style="color: #10b981; font-family: var(--font-mono); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-top: 2px;">
+                {{ report.performance }}
+              </span>
+            </div>
+
+          </div>
+
+          <div style="border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 32px;">
+            <h3 style="font-family: 'Nunito', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--text-primary); margin-top: 0; margin-bottom: 24px;">
+              Session Evaluation Transcript
+            </h3>
+
+            {% if report.results %}
+              {% for res in report.results %}
+              <div class="qa-block">
+                <p style="font-weight: 600; color: var(--text-primary); margin: 0 0 8px 0; font-size: 1rem;">
+                  Q{{ loop.index }}: {{ res.question }}
+                </p>
+                
+                <p style="margin: 0 0 12px 0; font-size: 0.9rem; color: var(--text-secondary); background: rgba(0,0,0,0.15); padding: 12px; border-radius: 4px; font-family: var(--font-sans);">
+                  <strong style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px; text-transform: uppercase;">Candidate Answer:</strong>
+                  {{ res.student_answer }}
+                </p>
+
+                <p style="margin: 0; font-size: 0.9rem; color: var(--text-muted); font-family: var(--font-sans);">
+                  <strong style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-cyan); display: inline-block; margin-right: 6px; text-transform: uppercase;">AI Evaluation Note [Score: {{ res.marks }}/10]:</strong>
+                  {{ res.feedback }}
+                </p>
+              </div>
+              {% endfor %}
+            {% else %}
+              <p style="font-family: var(--font-mono); color: var(--text-muted); font-size: 0.9rem; text-align: center; padding: 20px 0;">
+                [No granular question transcripts logged for this historical session]
+              </p>
+            {% endif %}
+          </div>
+
+        </article>
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>
